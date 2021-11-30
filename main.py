@@ -14,7 +14,7 @@ async def on_startup(_):
 
 # -----------------------------CLIENT SIDE---------------------------------------
 async def bot_start(message: types.Message):
-    await bot.send_message(message.from_user.id, "Здравствуйте, чем могу вам помочь?")
+    await bot.send_message(message.from_user.id, "Здравствуйте, чем могу вам помочь?", reply_markup=start_keyboard)
 
 
 # -----------------------------ADMIN SIDE---------------------------------------
@@ -22,7 +22,10 @@ async def bot_start(message: types.Message):
 # -----------------------------OTHER SIDE--------------------------------------
 
 # ----------------------------KEYBOARD SIDE-------------------------------------
-trace_mail,  = KeyboardButton("Поставки в ближайшее время")
+# начальная клавиатура
+trace_mail, range_production = KeyboardButton("Поставки в ближайшее время"), KeyboardButton("Ассортимент")
+start_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
+start_keyboard.row(range_production).row(trace_mail)
 
 
 # ----------------------------REGISTER FUNCS-------------------------------------
