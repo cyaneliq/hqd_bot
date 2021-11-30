@@ -22,7 +22,8 @@ async def range_production_func(message: types.Message):
 
 
 async def one_pod_func(message: types.Message):
-    pass
+    if message.text == 'Одноразки':
+        await bot.send_message(message.from_user.id, 'Одноразки:', reply_markup=time_pod_keyboard)
 
 
 # функции, который возвращают на шаг назад
@@ -53,7 +54,7 @@ def client_func(dp: Dispatcher):
     dp.register_message_handler(bot_start, commands='start')
     dp.register_message_handler(range_production_func, lambda message: message.text == 'Ассортимент')
     dp.register_message_handler(back_to_start_func, lambda message: message.text == 'Назад')
-    dp.register_message_handler(one_pod_func, lambda message: message.text in ['Hqd', 'Puff'])
+    dp.register_message_handler(one_pod_func, lambda message: message.text in ['Одноразки', 'Hqd', 'Puff'])
 
 
 # ----------------------------CALL REG FUNCS-------------------------------------
